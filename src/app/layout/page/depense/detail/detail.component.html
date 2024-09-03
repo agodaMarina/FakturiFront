@@ -1,0 +1,200 @@
+<!--begin::Container-->
+<div class="container-xxl" id="kt_content_container">
+  <!--begin::Invoice-->
+  <div class="card">
+    <!--begin::Body-->
+    <div class="card-body p-lg-20">
+      <!--begin::Layout-->
+      <div class="d-flex flex-column flex-xl-row">
+        <!--begin::Content-->
+        <div class="flex-lg-row-fluid me-xl-18 mb-10 mb-xl-0">
+          <!--begin::Head-->
+          <div class="d-flex flex-stack flex-wrap mb-10 mb-lg-15">
+            <!--begin::Logo-->
+            <a href="#">
+              <img
+                alt="Logo"
+                class="h-50px"
+                src="assets/media/svg/brand-logos/the-blockchain-group-tbg.svg"
+              />
+            </a>
+            <!--end::Logo-->
+            <!--begin::Actions-->
+            <div class="my-2">
+              <a href="#" class="btn btn-sm btn-success me-2">{{depense.categorie?.libelle}}</a>
+              <a
+                href="#"
+                class="btn btn-sm btn-primary me-2"
+                onclick="window.print()"
+                >Imprimer</a
+              >
+              
+            </div>
+            <!--end::Actions-->
+          </div>
+          <!--end::Head-->
+          <!--begin::Wrapper-->
+          <div class="mb-0">
+            <!--begin::Label-->
+            <div class="fw-bolder fs-3 text-gray-800 mb-8">Numéro {{depense.numero}}</div>
+            <!--end::Label-->
+            <!--begin::Row-->
+            <div class="row g-5 mb-11">
+              <!--end::Col-->
+              <div class="col-sm-6">
+                <!--end::Label-->
+                <div class="fw-bold fs-7 text-gray-600 mb-1">Enregisré le:</div>
+                <!--end::Label-->
+                <!--end::Col-->
+                <div class="fw-bolder fs-6 text-gray-800">{{depense.dateEmission}}</div>
+                <!--end::Col-->
+              </div>
+              <!--end::Col-->
+              <!--end::Col-->
+              <div class="col-sm-6" >
+                <!--end::Label-->
+                <div class="fw-bold fs-7 text-gray-600 mb-1">Echéance :</div>
+                <!--end::Label-->
+                <!--end::Info-->
+                <div
+                *ngIf="depense.dateEcheance"
+                  class="fw-bolder fs-6 text-gray-800 d-flex align-items-center flex-wrap"
+                >
+                  <span class="pe-2">{{depense.dateEcheance | date :'short'}}</span>
+                  <span class="fs-7 text-danger d-flex align-items-center">
+                    <span class="bullet bullet-dot bg-danger me-2"></span>Se termine dans 
+                    {{getDueDateCountdown(depense.dateEcheance)}} jours</span
+                  >
+                </div>
+                <!--end::Info-->
+              </div>
+              <!--end::Col-->
+            </div>
+            <!--end::Row-->
+            <!--begin::Row-->
+            <div class="row g-5 mb-12">
+              <!--end::Col-->
+              <div class="col-sm-6">
+                <!--end::Label-->
+                <div class="fw-bold fs-7 text-gray-600 mb-1">Pour:</div>
+                <!--end::Label-->
+                <!--end::Text-->
+                <div class="fw-bolder fs-6 text-gray-800">{{depense.user?.firstName}} {{depense.user?.lastName}}</div>
+                <!--end::Text-->
+                <!--end::Description-->
+                <div class="fw-bold fs-7 text-gray-600">
+                  {{depense.user?.email}} <br />{{depense.user?.telephone}}
+                </div>
+                <!--end::Description-->
+              </div>
+              <!--end::Col-->
+              <!--end::Col-->
+              <div class="col-sm-6">
+                <!--end::Label-->
+                <div class="fw-bold fs-7 text-gray-600 mb-1">Fournisseur:</div>
+                <!--end::Label-->
+                <!--end::Text-->
+                <div class="fw-bolder fs-6 text-gray-800">{{depense.fournisseur}}</div>
+                <!--end::Text-->
+                <!--end::Description-->
+                <div class="fw-bold fs-7 text-gray-600">
+                  9858 South 53rd Ave. <br />Matthews, NC 28104
+                </div>
+                <!--end::Description-->
+              </div>
+              <!--end::Col-->
+            </div>
+            <!--end::Row-->
+            <!--begin::Content-->
+            <div class="flex-grow-1">
+              <!--begin::Table-->
+              <div class="table-responsive border-bottom mb-9">
+               
+              </div>
+              <!--end::Table-->
+              <!--begin::Container-->
+              <div class="d-flex justify-content-end">
+                <!--begin::Section-->
+                <div class="mw-300px">
+                  <!--begin::Item-->
+                  <div class="d-flex flex-stack mb-3">
+                    <!--begin::Accountname-->
+                    <div class="fw-bold pe-10 text-gray-600 fs-7">
+                      total hors taxe:
+                    </div>
+                    <!--end::Accountname-->
+                    <!--begin::Label-->
+                    <div class="text-end fw-bolder fs-6 text-gray-800">
+                      {{depense.totaltva | currency:'XOF'}}
+                    </div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Item-->
+                  <!--begin::Item-->
+                  <div class="d-flex flex-stack mb-3">
+                    <!--begin::Accountname-->
+                    <div class="fw-bold pe-10 text-gray-600 fs-7">Taxe {{depense.tva}}%</div>
+                    <!--end::Accountname-->
+                    <!--begin::Label-->
+                    <div class="text-end fw-bolder fs-6 text-gray-800">
+                      0.00
+                    </div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Item-->
+                 
+                  <!--begin::Item-->
+                  <div class="d-flex flex-stack">
+                    <!--begin::Code-->
+                    <div class="fw-bold pe-10 text-gray-600 fs-7">Total:</div>
+                    <!--end::Code-->
+                    <!--begin::Label-->
+                    <div class="text-end fw-bolder fs-6 text-gray-800">
+                     {{depense.totalttc | currency:'XOF'}}
+                    </div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Item-->
+                </div>
+                <!--end::Section-->
+              </div>
+              <!--end::Container-->
+            </div>
+            <!--end::Content-->
+          </div>
+          <!--end::Wrapper-->
+        </div>
+        <!--end::Content-->
+        <!--begin::Sidebar-->
+        <div class="m-0">
+          <!--begin::Invoice sidebar-->
+          <div
+            class="d-print-none border border-dashed border-gray-300 card-rounded h-lg-100 min-w-md-350px p-9 bg-lighten"
+          >
+            <!--begin::Labels-->
+            <div class="mb-8">
+              <span class="badge badge-light-success me-2">Approuvé</span>
+              <span class="badge badge-light-warning" *ngIf="depense.dateEcheance">Payement en cours</span>
+            </div>
+            <!--end::Labels-->
+            <!--begin::Title-->
+            <h6 class="mb-8 fw-boldest text-gray-600 text-hover-primary">
+              IMAGE 
+            </h6>
+            <!--end::Title-->
+           <div class="card-body text-center pt-0">
+
+            <img [src]="getImageUrl(depense)" class="img-thumbnail mt-2" alt="" width="200" height="150" >
+           </div>
+          </div>
+          <!--end::Invoice sidebar-->
+        </div>
+        <!--end::Sidebar-->
+      </div>
+      <!--end::Layout-->
+    </div>
+    <!--end::Body-->
+  </div>
+  <!--end::Invoice-->
+</div>
+<!--end::Container-->

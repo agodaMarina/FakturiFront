@@ -1,0 +1,26 @@
+.balance-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: var(--bs-primary); /* Default primary color */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .balance-circle.low-balance {
+    background-color: #F1416C; /* Red color for low balance */
+  }
+  
+  .balance-circle.medium-balance {
+    background-color: #f39c12; /* Orange color for medium balance */
+  }
+  
+  .balance-circle.high-balance {
+    background-color: #2ecc71; /* Green color for high balance */
+  }
+  

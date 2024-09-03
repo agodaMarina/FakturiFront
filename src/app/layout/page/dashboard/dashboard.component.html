@@ -1,0 +1,208 @@
+<!--begin::Container-->
+<div class="container" id="kt_content_container">
+
+  <!--begin::Alert-->
+<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10" *ngIf="alert">
+  <!--begin::Icon-->
+  <i class="ki-duotone ki-search-list fs-2hx text-light me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+  <!--end::Icon-->
+
+  <!--begin::Wrapper-->
+  <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+      <!--begin::Title-->
+      <h4 class="mb-2 light">Attention !</h4>
+      <!--end::Title-->
+
+      <!--begin::Content-->
+      <span>Votre solde actuel est en plus ou moins dessous de votre limite critique </span>
+      <!--end::Content-->
+  </div>
+  <!--end::Wrapper-->
+
+  <!--begin::Close-->
+  <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+      <i class="ki-duotone ki-cross fs-1 text-light"><span class="path1"></span><span class="path2"></span></i>
+  </button>
+  <!--end::Close-->
+</div>
+<!--end::Alert-->
+  <!--begin::Row-->
+  <div class="row g-5 gx-xxl-8 mb-xxl-3">
+    <!--begin::Col-->
+    <div class="col-xxl-4">
+      <!--begin::Engage Widget 1-->
+      <div class="card card-xxl-stretch">
+        <!--begin::Card body-->
+        <div class="card-body d-flex flex-column justify-content-between h-100">
+          <!--begin::Section-->
+          <div class="pt-12">
+            <!--begin::Title-->
+            <h3 class="text-dark text-center fs-1 fw-boldest line-height-lg">
+              Bienvenue sur<br />FAKTURI
+            </h3>
+            <!--end::Title-->
+            <!--begin::Text-->
+            <div class="text-center text-gray-600 fs-5 fw-bold pt-4">
+              L'outil qui vous permet de mieux gérer vos dépenses et d'avoir un
+              historique complet de toutes vos opérations financières.
+            </div>
+            <!--end::Text-->
+            <!--begin::Action-->
+            <div class="text-center py-7 mb-18">
+              <a
+                [routerLink]="['/layout/depenses']"
+                class="btn btn-primary fs-6 px-6"
+                data-bs-toggle="modal"
+                data-bs-target="#kt_modal_create_app"
+                >Commencer</a
+              >
+            </div>
+            <!--end::Action-->
+          </div>
+          <!--end::Section-->
+          <!--begin::Image-->
+          <div
+            class="flex-grow-1 bgi-no-repeat bgi-size-contain bgi-position-x-center bgi-position-y-bottom card-rounded-bottom h-150px"
+            style="
+              background-image: url('assets/media/illustrations/user-welcome.png');
+            "
+          ></div>
+          <!--end::Image-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Engage Widget 1-->
+    </div>
+    <!--end::Col-->
+    <!--begin::Col-->
+    <div class="col-xxl-8">
+      <!--begin::Chart Widget 1-->
+      <div class="card card-xxl-stretch mb-5 mb-xxl-8">
+        <!--begin::Card header-->
+        <div class="card-header border-0 pt-5">
+          <!--begin::Card title-->
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-boldest fs-3 text-dark"
+              >Votre Solde actuel</span
+            >
+            <span class="text-gray-400 mt-2 fw-bold fs-6"
+              >{{texte}}</span
+            >
+          </h3>
+          <!--end::Card title-->
+         
+        </div>
+        <!--end::Header-->
+        <!--begin::Card body-->
+        <div class="card-body p-0">
+          <!--begin::Tab content-->
+          <div class="tab-content pt-10">
+            <!--begin::Tap pane-->
+            <div
+              class="tab-pane fade active show"
+              id="kt_chart_widget_1_tab_pane_1"
+            >
+             
+              <!--begin::Chart-->
+              <div class="card-body d-flex justify-content-center align-items-center">
+                <!--begin::Circle-->
+                <div id="balance-circle" [ngClass]="circleclass">
+                  <span id="balance-value">{{solde.solde | currency:'XOF':'code' }}</span>
+                </div>
+                <!--end::Circle-->
+              </div>
+              <!--end::Chart-->
+               <!--begin::Row-->
+               <div class="row p-0 px-9">
+                <!--begin::Col-->
+                <div class="col">
+                  <!--begin::Stat-->
+                  <div
+                    class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-6 pb-4 my-3"
+                  >
+                    <span class="fs-4 fw-bold text-gray-400 d-block"
+                      >Dépenses</span
+                    >
+                    <span
+                      class="fs-2x fw-boldest text-gray-800"
+                      data-kt-countup="true"
+                      data-kt-countup-value=""
+                      >{{depense}}</span
+                    >
+                  </div>
+                  <!--end::Stat-->
+                </div>
+                <!--end::Col-->
+                <!--begin::Col-->
+                <div class="col">
+                  <!--begin::Stat-->
+                  <div
+                    class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-6 pb-4 my-3"
+                  >
+                    <span class="fs-4 fw-bold text-gray-400 d-block"
+                      >Revenus</span
+                    >
+                    <span
+                      class="fs-2x fw-boldest text-gray-800"
+                      data-kt-countup="true"
+                      data-kt-countup-value=""
+                      >{{revenu}} </span
+                    >
+                  </div>
+                  <!--end::Stat-->
+                </div>
+                <!--end::Col-->
+                <!--begin::Col-->
+                <div class="col">
+                  <!--begin::Stat-->
+                  <div
+                    class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-6 pb-4 my-3"
+                  >
+                    <span class="fs-4 fw-bold text-gray-400 d-block"
+                      >Categories</span
+                    >
+                    <span
+                      class="fs-2x fw-boldest text-gray-800"
+                      data-kt-countup="true"
+                      data-kt-countup-value=""
+                      > {{categorie}} </span
+                    >
+                  </div>
+                  <!--end::Stat-->
+                </div>
+                <!--end::Col-->
+                <!--begin::Col-->
+                <div class="col">
+                  <!--begin::Stat-->
+                  <div
+                    class="border border-dashed border-gray-300 text-center min-w-125px rounded pt-6 pb-4 my-3"
+                  >
+                    <span class="fs-4 fw-bold text-gray-400 d-block"
+                      >Epargne</span
+                    >
+                    <span
+                      class="fs-2x fw-boldest text-gray-800"
+                      data-kt-countup="true"
+                      data-kt-countup-value=""
+                      ></span
+                    >
+                  </div>
+                  <!--end::Stat-->
+                </div>
+                <!--end::Col-->
+              </div>
+              <!--end::Row-->
+            </div>
+            <!--end::Tap pane-->
+          </div>
+          <!--end::Tab content-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Chart Widget 1-->
+    </div>
+    <!--end::Col-->
+  </div>
+  <!--end::Row-->
+</div>
+<!--end::Container-->

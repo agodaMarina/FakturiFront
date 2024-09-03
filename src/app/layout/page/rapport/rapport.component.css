@@ -1,0 +1,22 @@
+.calendar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .calendar div {
+    text-align: center;
+  }
+  
+  .date {
+    display: block;
+    padding: 10px;
+    border-radius: 20px;
+  }
+  
+  .current-date {
+    background-color: #ff4081; /* Highlight color */
+    color: white;
+  }
+  

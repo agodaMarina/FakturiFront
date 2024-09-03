@@ -1,0 +1,151 @@
+<!--begin::Row-->
+<div class="row gy-10 gx-xl-10">
+  <!--begin::Col-->
+  <div class="">
+    <!--begin::Table Widget 1-->
+    <div class="card card-xxl-stretch mb-5 mb-xl-10">
+      <!--begin::Header-->
+      <div class="card-header border-0 pt-5 pb-3">
+        <!--begin::Heading-->
+        <h3 class="card-title align-items-start flex-column">
+          <span class="card-label fw-boldest text-gray-800 fs-2"
+            >Liste des catégories</span
+          >
+          <span class="text-gray-400 fw-bold mt-2 fs-6"></span>
+        </h3>
+        <!--end::Heading-->
+        <!--begin::Toolbar-->
+        <div class="card-toolbar">
+          <!--begin::Select-->
+          <div class="pe-6 my-1">
+            <select
+              class="form-select form-select-sm form-select-solid w-125px"
+              data-control="select2"
+              data-placeholder="All Users"
+              data-hide-search="true"
+            >
+              <option value="1" selected="selected">toutes</option>
+              <option value="2">Active </option>
+              <option value="3">Pending users</option>
+            </select>
+          </div>
+          <!--end::Select-->
+          <!--begin::Search-->
+          <div class="w-125px position-relative my-1">
+            <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+            <span
+              class="svg-icon svg-icon-3 svg-icon-gray-500 position-absolute top-50 translate-middle ms-6"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                width="24px"
+                height="24px"
+                viewBox="0 0 24 24"
+                version="1.1"
+              >
+                <g
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <rect x="0" y="0" width="24" height="24" />
+                  <path
+                    d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                    fill="#000000"
+                    fill-rule="nonzero"
+                    opacity="0.3"
+                  />
+                  <path
+                    d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                    fill="#000000"
+                    fill-rule="nonzero"
+                  />
+                </g>
+              </svg>
+            </span>
+            <!--end::Svg Icon-->
+            <input
+              type="text"
+              class="form-control form-control-sm form-control-solid ps-10"
+              name="search"
+              value=""
+              placeholder="Rechercher..."
+            />
+          </div>
+          <!--end::Search-->
+        </div>
+        <!--end::Toolbar-->
+      </div>
+      <!--end::Header-->
+      <!--begin::Body-->
+      <div class="card-body py-0">
+        <!--begin::Table responsive-->
+        <div class="table-responsive">
+          <!--begin::Table-->
+          <table
+            class="table align-middle table-row-bordered table-row-dashed gy-5"
+            id="kt_table_widget_1"
+          >
+            <!--begin::Table body-->
+            <tbody>
+              <tr
+                class="text-start text-gray-400 fw-boldest fs-7 text-uppercase"
+              >
+                <th class="w-20px ps-0">
+                  <div
+                    class="form-check form-check-sm form-check-custom form-check-solid me-5"
+                  >
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      data-kt-check="true"
+                      data-kt-check-target="#kt_table_widget_1 .form-check-input"
+                      value="1"
+                    />
+                  </div>
+                </th>
+                <th class="min-w-200px px-0">Libellé</th>
+                <th class="text-end pe-2 min-w-70px">Action</th>
+              </tr>
+              @for (item of categories; track $index) {
+              <tr>
+                <td class="p-0">
+                  <div
+                    class="form-check form-check-sm form-check-custom form-check-solid"
+                  >
+                    <input class="form-check-input" type="checkbox" value="1" />
+                  </div>
+                </td>
+                
+                <td>
+                  <div class="d-flex flex-column w-100 me-2 mt-2">
+                    <span class="text-400 me-2 fw-boldest mb-2">{{item.libelle}}</span>
+                    
+                  </div>
+                </td>
+                <td class="pe-0 text-end">
+                  <a
+                    
+                    (click)="deleteCategorie(item.id || 0)"
+                    class="btn btn-danger fw-boldest btn-sm px-5"
+                    >supprimer</a
+                  >
+                </td>
+              </tr>
+            }
+            </tbody>
+            <!--end::Table body-->
+          </table>
+          <!--end::Table-->
+        </div>
+        <!--end::Table responsive-->
+      </div>
+      <!--end::Body-->
+    </div>
+    <!--end::Table Widget 1-->
+  </div>
+  <!--end::Col-->
+</div>
+<!--end::Row-->

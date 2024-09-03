@@ -1,0 +1,501 @@
+<div class="container-xxl" id="kt_content_container">
+  <!--begin::Toast-->
+  <p-toast />
+  <!--end::Toast-->
+
+  <!--begin::Form-->
+  <form
+    id="kt_ecommerce_add_product_form"
+    class="form d-flex flex-column flex-lg-row"
+    [formGroup]="factureForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <!--begin::Aside column-->
+    <div
+      class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10"
+    >
+      <!--begin::Thumbnail settings-->
+      <div class="card card-flush py-4">
+        <!--begin::Card header-->
+        <div class="card-header">
+          <!--begin::Card title-->
+          <div class="card-title">
+            <h2>Image</h2>
+          </div>
+          <!--end::Card title-->
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body text-center pt-0">
+          <!--begin::Card body-->
+          <img
+            *ngIf="imagePreview"
+            [src]="imagePreview"
+            alt="Image Preview"
+            class="img-thumbnail mt-2"
+          />
+          <button
+            *ngIf="imagePreview"
+            (click)="clearImage()"
+            class="btn btn-secondary mt-3"
+          >
+            Retour
+          </button>
+          <!--begin::Input group-->
+          <div class="fv-row mb-2" *ngIf="!imagePreview">
+            <!--begin::Dropzone-->
+            <div class="dropzone" id="kt_ecommerce_add_product_media">
+              <!--begin::Message-->
+              <div class="dz-message needsclick">
+                <!--begin::Icon-->
+                <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
+                <!--end::Icon-->
+
+                <!--begin::Info-->
+                <div class="ms-4">
+                  <h3>
+                    <input
+                      type="file"
+                      class="fs-5 fw-bolder text-gray-900 mb-1"
+                      accept="image/*"
+                      (change)="onFileSelected($event)"
+                    />
+                    <input
+                      type="hidden"
+                      name="MAX_FILE_SIZE"
+                      value="10485760"
+                    />
+                    chargez une image ou cliquez pour uploader.
+                  </h3>
+                </div>
+                <!--end::Info-->
+              </div>
+              <!--end::Dropzone-->
+            </div>
+            <!--end::Input group-->
+
+            <!--begin::Description-->
+            <div class="text-muted fs-7">
+              vous pourvez charger l'image du reçu si vous l'avez
+            </div>
+            <!--end::Description-->
+          </div>
+          <!--end::Card header-->
+          <!--begin::Description-->
+          <div class="text-muted fs-7" *ngIf="!imagePreview">
+            *.png, *.jpg and *.jpeg
+          </div>
+          <!--end::Description-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Thumbnail settings-->
+      <!--begin::Status-->
+      <div class="card card-flush py-4">
+        <!--begin::Card header-->
+        <div class="card-header">
+          <!--begin::Card title-->
+          <div class="card-title">
+            <h2>Statut</h2>
+          </div>
+          <!--end::Card title-->
+
+          <!--begin::Card toolbar-->
+          <div class="card-toolbar">
+            <div
+              class="rounded-circle bg-success w-15px h-15px"
+              id="kt_ecommerce_add_product_status"
+            ></div>
+          </div>
+          <!--begin::Card toolbar-->
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body pt-0">
+          <!--begin::Select2-->
+          <div
+            class="form-check form-check-custom form-check-solid form-check-primary me-6"
+          >
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="statut"
+                formControlName="statut"
+                [value]="true"
+              />
+              Payé
+            </label>
+          </div>
+
+          <div></div>
+          <div
+            class="form-check form-check-custom form-check-solid form-check-danger me-6"
+          >
+            <label class="form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="statut"
+                formControlName="statut"
+                [value]="false"
+              />
+              impayé
+            </label>
+          </div>
+          <!--end::Select2-->
+
+          <!--begin::Description-->
+          <div class="text-muted fs-7">Choississez un statut.</div>
+          <!--end::Description-->
+
+          <!--begin::Datepicker-->
+          <div class="input-block mb-3" *ngIf="isStatutImpaye">
+            <label>Date D'échéance</label>
+            <input
+              type="date"
+              class="form-control"
+              formControlName="dateEcheance"
+            />
+          </div>
+          <!--end::Datepicker-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Status-->
+
+      <!--begin::Category & tags-->
+      <div class="card card-flush py-4">
+        <!--begin::Card header-->
+        <div class="card-header">
+          <!--begin::Card title-->
+          <div class="card-title">
+            <h2>Catégorisation</h2>
+          </div>
+          <!--end::Card title-->
+        </div>
+        <!--end::Card header-->
+
+        <!--begin::Card body-->
+        <div class="card-body pt-0">
+          <!--begin::Input group-->
+          <!--begin::Label-->
+          <label class="form-label">Catégorie</label>
+          <!--end::Label-->
+          <select
+            class="form-select mb-2"
+            data-control="select2"
+            data-hide-search="true"
+            formControlName="categorie"
+            data-placeholder="Sélectionner une option"
+            id="kt_ecommerce_add_product_status_select"
+          >
+            <option></option>
+            @for (item of categories; track $index) {
+            <option [value]="item">{{ item.libelle }}</option>
+            }
+          </select>
+          <!--end::Select2-->
+
+          <!--begin::Description-->
+          <div class="text-muted fs-7 mb-7">Catégoriser la dépense</div>
+          <!--end::Description-->
+          <!--end::Input group-->
+
+          <!--begin::Button-->
+          <a class="btn btn-light-primary btn-sm mb-10" (click)="showDialog()">
+            <!--begin::Svg Icon | path: icons/duotune/arrows/arr087.svg-->
+            <span class="svg-icon svg-icon-2"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <rect
+                  opacity="0.5"
+                  x="11"
+                  y="18"
+                  width="12"
+                  height="2"
+                  rx="1"
+                  transform="rotate(-90 11 18)"
+                  fill="currentColor"
+                />
+                <rect
+                  x="6"
+                  y="11"
+                  width="12"
+                  height="2"
+                  rx="1"
+                  fill="currentColor"
+                /></svg
+            ></span>
+            <!--end::Svg Icon-->
+            Créer une nouvelle Catégorie
+          </a>
+          <!--end::Button-->
+        </div>
+        <!--end::Card body-->
+      </div>
+      <!--end::Category & tags-->
+    </div>
+    <!--end::Aside column-->
+
+    <!--begin::Main column-->
+    <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
+      <!--begin::Tab content-->
+      <div class="tab-content">
+        <!--begin::Tab pane-->
+        <div
+          class="tab-pane fade show active"
+          id="kt_ecommerce_add_product_general"
+          role="tab-panel"
+        >
+          <div class="d-flex flex-column gap-7 gap-lg-10">
+            <!--begin::General options-->
+            <div class="card card-flush py-4">
+              <!--begin::Card header-->
+              <div class="card-header">
+                <div class="card-title">
+                  <h2>Renseignez les détails de votre dépense</h2>
+                </div>
+              </div>
+              <!--end::Card header-->
+
+              <!--begin::Card body-->
+              <div class="card-body pt-0">
+                <!--begin::Input group-->
+                <div class="mb-10 fv-row">
+                  <!--begin::Label-->
+                  <label class="required form-label">Fournisseur</label>
+                  <!--end::Label-->
+
+                  <!--begin::Input-->
+                  <input
+                    type="text"
+                    formControlName="fournisseur"
+                    class="form-control mb-2"
+                    placeholder="Le nom de votre marchand ou de votre fournisseur"
+                    value=""
+                  />
+                  <!--end::Input-->
+
+                  <!--begin::Description-->
+                  <div class="text-muted fs-7">
+                    le nom du fournisseur est requis
+                  </div>
+                  <!--end::Description-->
+                </div>
+                <!--end::Input group-->
+
+                <!--begin::Input group-->
+                <div>
+                  <!--begin::Label-->
+                  <label class="form-label">Description</label>
+                  <!--end::Label-->
+
+                  <!--begin::Editor-->
+                  <div
+                    id="kt_ecommerce_add_product_description"
+                    name="kt_ecommerce_add_product_description"
+                    class="min-h-200px mb-2"
+                  >
+                    <input type="textarea" class="form-control" />
+                  </div>
+                  <!--end::Editor-->
+
+                  <!--begin::Description-->
+                  <div class="text-muted fs-7">
+                    Set a description to the product for better visibility.
+                  </div>
+                  <!--end::Description-->
+                </div>
+                <!--end::Input group-->
+              </div>
+              <!--end::Card header-->
+            </div>
+            <!--end::General options-->
+
+            <!--begin::Pricing-->
+            <div class="card card-flush py-4">
+              <!--begin::Card header-->
+              <div class="card-header">
+                <div class="card-title">
+                  <h2>Montant</h2>
+                </div>
+              </div>
+              <!--end::Card header-->
+
+              <!--begin::Card body-->
+              <div class="card-body pt-0">
+                <!--begin::Input group-->
+                <div class="mb-5 fv-row">
+                  <!--begin::Label-->
+                  <label class="required form-label">Montant Hors Taxe</label>
+                  <!--end::Label-->
+
+                  <!--begin::Input-->
+                  <input
+                    type="number"
+                    formControlName="totalht"
+                    name="totalht"
+                    class="form-control mb-2"
+                    placeholder="Montant Hors Taxe"
+                  />
+                  <!--end::Input-->
+
+                  <!--begin::Description-->
+                  <div class="text-muted fs-7">
+                    Mettez le montant de votre dépense
+                  </div>
+                  <!--end::Description-->
+                </div>
+                <!--end::Input group-->
+                <!--begin::Input group-->
+                <div class="fv-row mb-5">
+                  <!--begin::Label-->
+                  <label class="form-label">Taxe (%)</label>
+                  <!--end::Label-->
+
+                  <!--begin::Input-->
+                  <input
+                    type="text"
+                    class="form-control mb-2"
+                    formControlName="tva"
+                  />
+                  <!--end::Input-->
+
+                  <!--begin::Description-->
+                  <div class="text-muted fs-7">
+                    La taxe appliquée à votre achat
+                  </div>
+                  <!--end::Description-->
+                </div>
+                <!--end::Input group-->
+
+                <!--begin::Tax-->
+                <div class="d-flex flex-wrap gap-5">
+                  <!--begin::Input group-->
+                  <div class="fv-row w-100 flex-md-root">
+                    <!--begin::Label-->
+                    <label class="required form-label">Montant tva</label>
+                    <!--end::Label-->
+
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      formControlName="totaltva"
+                    />
+
+                    <!--begin::Description-->
+                    <div class="text-muted fs-7">
+                      Le montant de votre dépense avec la taxe appliquée
+                    </div>
+                    <!--end::Description-->
+                  </div>
+                  <!--end::Input group-->
+
+                  <!--begin::Input group-->
+                  <div class="fv-row w-100 flex-md-root">
+                    <!--begin::Label-->
+                    <label class="form-label">Montant Total</label>
+                    <!--end::Label-->
+
+                    <!--begin::Input-->
+                    <input
+                      type="text"
+                      class="form-control mb-2"
+                      formControlName="totalttc"
+                    />
+                    <!--end::Input-->
+
+                    <!--begin::Description-->
+                    <div class="text-muted fs-7">
+                      Le montant total de votre dépense
+                    </div>
+                    <!--end::Description-->
+                  </div>
+                  <!--end::Input group-->
+                </div>
+                <!--end:Tax-->
+              </div>
+              <!--end::Card header-->
+            </div>
+            <!--end::Pricing-->
+          </div>
+        </div>
+        <!--end::Tab pane-->
+      </div>
+      <!--end::Tab content-->
+
+      <div class="d-flex justify-content-end">
+        <!--begin::Button-->
+        <a
+          [routerLink]="['/layout/depenses']"
+          id="kt_ecommerce_add_product_cancel"
+          class="btn btn-light me-5"
+        >
+          Annuler
+        </a>
+        <!--end::Button-->
+
+        <!--begin::Button-->
+        <button
+          type="submit"
+          id="kt_ecommerce_add_product_submit"
+          class="btn btn-primary"
+        >
+          <span class="indicator-label">Enregistrer </span>
+          <span class="indicator-progress">
+            Please wait...
+            <span
+              class="spinner-border spinner-border-sm align-middle ms-2"
+            ></span>
+          </span>
+        </button>
+        <!--end::Button-->
+      </div>
+    </div>
+    <div class="card flex justify-content-center">
+      <p-dialog
+        header="Ajouter une Catégorie"
+        [modal]="true"
+        [(visible)]="visible"
+        [style]="{ width: '25rem' }"
+      >
+        <form #form="ngForm">
+          <div class="d-flex flex-wrap gap-5 mb-3">
+            <label for="username" class="font-semibold w-6rem">Libellé</label>
+
+            <input
+              pInputText
+              id="username"
+              class="form-control mb-2"
+              name="categorieForm.libelle"
+              [(ngModel)]="categorieForm.libelle"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="flex justify-content-end gap-2">
+            <button
+              type="submit"
+              (onclick)="saveCategorie()"
+              id="kt_ecommerce_add_product_submit"
+              class="btn btn-primary"
+            >
+              <span class="indicator-label">Créer </span>
+            </button>
+          </div>
+        </form>
+      </p-dialog>
+    </div>
+    <!--end::Main column-->
+  </form>
+  <!--end::Form-->
+</div>
+<!--end::Container-->

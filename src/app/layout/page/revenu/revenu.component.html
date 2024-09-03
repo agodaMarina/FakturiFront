@@ -1,0 +1,154 @@
+<div class="container-xxl" id="kt_content_container">
+
+  <!--begin::Toast-->
+  <p-toast />
+<!--end::Toast-->
+
+
+  <div class="row h-md-200">
+    <!--begin::Col-->
+    <div class="col-xl-4">
+      <!--begin::Engage widget 1-->
+      <div class="card h-md-100" dir="ltr">
+        <!--begin::Body-->
+        <div class="card-body d-flex flex-column flex-center">
+          <!--begin::Heading-->
+          <div class="mb-2">
+            <!--begin::Title-->
+            <h1 class="fw-semibold text-gray-800 text-center lh-lg">
+              Enregistrez vos Entrées<br />
+              ici
+              <span class="fw-bolder"> </span>
+            </h1>
+            <!--end::Title-->
+
+            <!--begin::Illustration-->
+            <div class="py-10 text-center">
+              <img
+                src="assets/media/illustrations/sigma-1/1-dark.png"
+                class="theme-light-show w-200px"
+                alt=""
+              />
+            </div>
+            <!--end::Illustration-->
+          </div>
+          <!--end::Heading-->
+
+          <!--begin::Links-->
+          <div class="text-center mb-1">
+            <!--begin::Link-->
+            <a
+              class="btn btn-sm btn-primary me-2"
+              data-bs-target="#kt_modal_new_address"
+              (click)="showDialog()"
+            >
+              Ajouter
+            </a>
+            <!--end::Link-->
+
+            <!--begin::Link-->
+            <a class="btn btn-sm btn-light" [routerLink]="['/layout/depenses']">
+              Voir les dépenses
+            </a>
+            <!--end::Link-->
+          </div>
+          <!--end::Links-->
+        </div>
+        <!--end::Body-->
+      </div>
+      <!--end::Engage widget 1-->
+    </div>
+    <!--end::Col-->
+
+    <div class="col-xl-8">
+      <!--begin::Timeline Widget 4-->
+      <div class="card h-md-100">
+        <!--begin::Header-->
+        <div class="card-header border-0 pt-5">
+          <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold text-dark">Liste des Revenus</span>
+          </h3>
+        </div>
+        <!--end::Header-->
+
+        <div class="card-body">
+          <p-scrollPanel [style]="{ width: '100%', height: '500px' }">
+            <div
+              *ngFor="let item of revenus, index as i"
+              [ngClass]="color(i ?? 0)"
+            >
+              <!--begin::Icon-->
+              <span [ngClass]="icon">
+                <i class="pi pi-wallet" style="font-size: 2rem"></i>
+              </span>
+              <!--end::Icon-->
+
+              <!--begin::Title-->
+              <div class="flex-grow-1 me-2">
+                <a
+                  
+                  class="fw-bold text-gray-800 text-hover-primary fs-6"
+                  >{{ item.description }}</a
+                >
+
+                <span class="text-muted fw-semibold d-block">{{
+                  item.date | date : "dd/mm/yyyy hh:mm a"
+                }}</span>
+              </div>
+              <!--end::Title-->
+
+              <!--begin::Lable-->
+              <span [ngClass]="code"
+                >+ {{ item.montant | currency : "XOF" : "code" }}</span
+              >
+              <!--end::Lable-->
+            </div>
+          </p-scrollPanel>
+        </div>
+      </div>
+
+      <div class="card flex justify-content-center">
+        <p-dialog
+          header="Ajouter votre Revenu"
+          [modal]="true"
+          [(visible)]="visible"
+          [style]="{ width: '30rem' }"
+        >
+          <form #f="ngForm">
+            <div class="flex align-items-center gap-3 mb-3">
+              <label for="username" class="form-label">Montant</label>
+              <input
+                pInputText
+                id="username"
+                class="form-control mb-2"
+                autocomplete="off"
+                type="number"
+                name="revenu.montant"
+                [(ngModel)]="revenu.montant"
+              />
+            </div>
+            <div class="flex align-items-center gap-3 mb-5">
+              <label for="email" class="form-label">Description</label>
+              <input
+                pInputText
+                id="email"
+                class="form-control mb-2"
+                autocomplete="off"
+                [(ngModel)]="revenu.description"
+                name="revnenu.description"
+              />
+            </div>
+            <div class="text-center mb-1">
+              <a (click)="visible = false" class="btn btn-sm btn-light"
+                >retour
+              </a>
+              <a (click)="addRevenu()" class="btn btn-sm btn-primary me-2"
+                >Ajouter
+              </a>
+            </div>
+          </form>
+        </p-dialog>
+      </div>
+    </div>
+  </div>
+</div>
