@@ -1,31 +1,44 @@
 <!--begin::Container-->
 <div class="container" id="kt_content_container">
-
   <!--begin::Alert-->
-<div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10" *ngIf="alert">
-  <!--begin::Icon-->
-  <i class="ki-duotone ki-search-list fs-2hx text-light me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
-  <!--end::Icon-->
+  <div
+    class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10"
+    *ngIf="alert"
+  >
+    <!--begin::Icon-->
+    <i class="ki-duotone ki-search-list fs-2hx text-light me-4 mb-5 mb-sm-0"
+      ><span class="path1"></span><span class="path2"></span
+      ><span class="path3"></span
+    ></i>
+    <!--end::Icon-->
 
-  <!--begin::Wrapper-->
-  <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+    <!--begin::Wrapper-->
+    <div class="d-flex flex-column text-light pe-0 pe-sm-10">
       <!--begin::Title-->
       <h4 class="mb-2 light">Attention !</h4>
       <!--end::Title-->
 
       <!--begin::Content-->
-      <span>Votre solde actuel est en plus ou moins dessous de votre limite critique </span>
+      <span
+        >Votre solde actuel est plus ou moins dessous de votre limite critique
+      </span>
       <!--end::Content-->
-  </div>
-  <!--end::Wrapper-->
+    </div>
+    <!--end::Wrapper-->
 
-  <!--begin::Close-->
-  <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
-      <i class="ki-duotone ki-cross fs-1 text-light"><span class="path1"></span><span class="path2"></span></i>
-  </button>
-  <!--end::Close-->
-</div>
-<!--end::Alert-->
+    <!--begin::Close-->
+    <button
+      type="button"
+      class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto"
+      data-bs-dismiss="alert"
+    >
+      <i class="ki-duotone ki-cross fs-1 text-light"
+        ><span class="path1"></span><span class="path2"></span
+      ></i>
+    </button>
+    <!--end::Close-->
+  </div>
+  <!--end::Alert-->
   <!--begin::Row-->
   <div class="row g-5 gx-xxl-8 mb-xxl-3">
     <!--begin::Col-->
@@ -85,12 +98,9 @@
             <span class="card-label fw-boldest fs-3 text-dark"
               >Votre Solde actuel</span
             >
-            <span class="text-gray-400 mt-2 fw-bold fs-6"
-              >{{texte}}</span
-            >
+            <span class="text-gray-400 mt-2 fw-bold fs-6">{{ texte }}</span>
           </h3>
           <!--end::Card title-->
-         
         </div>
         <!--end::Header-->
         <!--begin::Card body-->
@@ -102,18 +112,21 @@
               class="tab-pane fade active show"
               id="kt_chart_widget_1_tab_pane_1"
             >
-             
               <!--begin::Chart-->
-              <div class="card-body d-flex justify-content-center align-items-center">
+              <div
+                class="card-body d-flex justify-content-center align-items-center"
+              >
                 <!--begin::Circle-->
                 <div id="balance-circle" [ngClass]="circleclass">
-                  <span id="balance-value">{{solde.solde | currency:'XOF':'code' }}</span>
+                  <span id="balance-value">{{
+                    solde.solde | currency : "XOF" : "code"
+                  }}</span>
                 </div>
                 <!--end::Circle-->
               </div>
               <!--end::Chart-->
-               <!--begin::Row-->
-               <div class="row p-0 px-9">
+              <!--begin::Row-->
+              <div class="row p-0 px-9">
                 <!--begin::Col-->
                 <div class="col">
                   <!--begin::Stat-->
@@ -127,7 +140,7 @@
                       class="fs-2x fw-boldest text-gray-800"
                       data-kt-countup="true"
                       data-kt-countup-value=""
-                      >{{depense}}</span
+                      >{{ depense }}</span
                     >
                   </div>
                   <!--end::Stat-->
@@ -146,8 +159,8 @@
                       class="fs-2x fw-boldest text-gray-800"
                       data-kt-countup="true"
                       data-kt-countup-value=""
-                      >{{revenu}} </span
-                    >
+                      >{{ revenu }}
+                    </span>
                   </div>
                   <!--end::Stat-->
                 </div>
@@ -165,8 +178,9 @@
                       class="fs-2x fw-boldest text-gray-800"
                       data-kt-countup="true"
                       data-kt-countup-value=""
-                      > {{categorie}} </span
                     >
+                      {{ categorie }}
+                    </span>
                   </div>
                   <!--end::Stat-->
                 </div>
@@ -184,8 +198,7 @@
                       class="fs-2x fw-boldest text-gray-800"
                       data-kt-countup="true"
                       data-kt-countup-value=""
-                      ></span
-                    >
+                    ></span>
                   </div>
                   <!--end::Stat-->
                 </div>

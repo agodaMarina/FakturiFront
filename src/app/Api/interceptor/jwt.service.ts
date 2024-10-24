@@ -5,9 +5,8 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { finalize, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TokenService } from '../services/token.service';
-
 import { LoaderService } from '../services/loader.service';
 
 const routesWithoutToken = [
@@ -19,6 +18,7 @@ const routesWithoutToken = [
 @Injectable({
   providedIn: 'root',
 })
+
 export class JwtService implements HttpInterceptor {
   requestsCount = 0;
   constructor(
@@ -41,12 +41,7 @@ export class JwtService implements HttpInterceptor {
         },
       });
     }
-
-    //this.requestsCount++;
-    //this.loaderService.showLoader();
-
-    // 3. Exécution de la requête et finalisation
-    return next.handle(request)
+    return next.handle(request);
   }
 }
 
