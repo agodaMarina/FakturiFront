@@ -1,7 +1,8 @@
-# Front
-
+# Fakturi
+fakturi est une application de gestion de budget personnel.Elle vous aide à enregistrer vos revenus et vos dépenses vous fournis donc un historique complet de vos opérations financières et vous aide à analyser vos tendances pour mieux gérer vos finances
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
 
+![App Screenshot](https://github.com/agodaMarina/FakturiFront/blob/main/src/app/layout/page/depense/dashboard.png?raw=true)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
