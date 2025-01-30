@@ -1,6 +1,6 @@
 # Fakturi
 fakturi est une application de gestion de budget personnel.Elle vous aide à enregistrer vos revenus et vos dépenses vous fournis donc un historique complet de vos opérations financières et vous aide à analyser vos tendances pour mieux gérer vos finances
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Ce projet est developpé avec [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8. et consomme l'api FakturiApi que vous pouvez trouver ici : [api](https://github.com/agodaMarina/FakturiApi) developper avec spring boot
 
 ![App Screenshot](https://github.com/agodaMarina/FakturiFront/blob/main/src/app/layout/page/depense/dashboard.png?raw=true)
 ## Development server
